@@ -5,5 +5,5 @@ alias la='exa -a --icons --color=always --group-directories-first'
 alias l='exa -F --icons --color=always --group-directories-first'
 alias l.='exa -a | egrep "^\."'
 
-
+# Adding windows 'cls' for clean screen
 alias cls='clear'
