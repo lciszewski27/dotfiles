@@ -1,5 +1,7 @@
 source "$HOME/.slimzsh/slim.zsh"
 
+export PATH="$HOME/.local/bin":$PATH
+
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
@@ -13,3 +15,4 @@ alias ltttt=' ls --tree -D -L 5 -I ${TREE_IGNORE}'
 
 source ~/.zsh/zsh-history-substring-search.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.nnn
