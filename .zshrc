@@ -16,3 +16,8 @@ alias ltttt=' ls --tree -D -L 5 -I ${TREE_IGNORE}'
 source ~/.zsh/zsh-history-substring-search.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.nnn
+
+# Change terminal base on wallpaper
+(cat ~/.cache/wal/sequences &)
+
+PATH=~/.console-ninja/.bin:$PATH

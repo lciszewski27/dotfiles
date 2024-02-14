@@ -19,8 +19,6 @@ configuration {
 	sidebar-mode: 					false;
 }
 
-@import "colors.rasi"
-
 window {
     transparency:                   "real";
     background-color:               @bg;
