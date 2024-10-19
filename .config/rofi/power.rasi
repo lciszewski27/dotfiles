@@ -1,0 +1,17 @@
+window {
+	width: 500px;
+	border: 2px;
+	border-color: #444b6a;
+	border-radius: 20px;
+}
+listview {
+	lines: 4;
+	layout: horizontal;
+	spacing: 50px;
+}
+
+mainbox {
+	children: [ listview ];
+}
+
+
