@@ -1,0 +1,72 @@
+window {
+  margin: 0px;
+  padding: 0px;
+  /*background-color: #1b1c29;*/
+  opacity: 0.85;
+  border-radius: 20px;
+  border: 2px solid #ebbcba;
+  color: #e0def4;
+  font-family: "CaskaydiaCove Nerd Font";
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#input {
+  margin: 5px 20px;
+  padding: 10px;
+  border-radius: 0.1em;
+  border: none;
+  color: #ebbcba;
+  background-color: #191724;
+}
+#inner-box {
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  background-color: #191724;
+}
+
+#outer-box {
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #191724;
+}
+
+#scroll {
+  margin: 0px;
+  padding: 10px;
+  border: none;
+  background-color: #191724;
+}
+
+#text {
+  margin: 5px;
+  border: none;
+  color: #e0def4;
+}
+
+#entry {
+  background-color: #191724;
+  border-radius: 10px;
+}
+
+#entry arrow {
+  border: none;
+  color: #ebbcba;
+}
+
+#entry:selected {
+  border: 0.11em solid #ebbcba;
+  background-color: #191724;
+}
+
+#entry:selected #text {
+  color: #ebbcba;
+  background-color: #191724;
+}
+
+#entry:drop(active) {
+  background-color: #ebbcba !important;
+}

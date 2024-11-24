@@ -1,0 +1,82 @@
+@import "./rose-pine.css";
+
+* {
+  font-size: 12px;
+  font-weight: bold;
+  min-height: 0;
+  font-family: "CaskaydiaCove Nerd Font";
+}
+
+window#waybar {
+  background: rgba(25, 23, 36, 0.8);
+}
+
+#clock,
+#workspaces,
+#custom-weather,
+#pulseaudio,
+#disk,
+#tray,
+#cpu,
+#memory {
+  background-color: @surface;
+  margin: 6px 4px 6px 4px;
+  border-radius: 8px;
+  border: 1px solid @overlay;
+  color: @text;
+}
+#clock {
+  color: @gold;
+  border-radius: 8px 0 0 8px;
+  margin: 6px 0 6px 4px;
+  min-width: 150px;
+  margin-left: 10px;
+}
+#custom-weather {
+  margin: 6px 4px 6px 0;
+  border-radius: 0 8px 8px 0;
+  border-left: 0;
+  min-width: 65px;
+}
+#workspaces button {
+  font-size: 12px;
+  min-width: 0;
+  color: @muted;
+  min-width: 15px;
+}
+#workspaces button.active {
+  color: @text;
+}
+
+#window {
+  color: @foam;
+}
+#memory {
+  min-width: 60px;
+  margin: 6px 0 6px 4px;
+  border-radius: 8px 0 0 8px;
+  color: @pine;
+}
+#cpu {
+  min-width: 60px;
+  margin: 6px 0 6px 0;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  color: @gold;
+}
+#disk {
+  min-width: 60px;
+  margin: 6px 4px 6px 0;
+  border-radius: 0 8px 8px 0;
+  color: @love;
+}
+#pulseaudio {
+  min-width: 60px;
+  color: @iris;
+  margin-right: 10px;
+}
+#tray {
+  min-width: 30px;
+}
+/*https: //github.com/rose-pine/waybar?tab=readme-ov-file*/

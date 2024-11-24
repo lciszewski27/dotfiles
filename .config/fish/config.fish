@@ -9,7 +9,9 @@ if status is-interactive
     set EDITOR nvim
 
     alias cat='bat'
-    
+   
+    fzf --fish | source
+
     # FZF
     function fzf 
       /usr/bin/fzf --preview 'bat --color=always {}'
@@ -30,9 +32,13 @@ if status is-interactive
     set BUN_INSTALL "$HOME/.bun"
     fish_add_path "$BUN_INSTALL/bin"
   
-    alias speedtest="bunx speed-cloudflare-cli"
+    alias speedtest="npx speed-cloudflare-cli"
+
+    fish_config theme choose rosepine
+
 
     source ~/.config/fish/view.fish
+
 
 end
 

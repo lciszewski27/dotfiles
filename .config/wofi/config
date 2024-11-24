@@ -1,0 +1,8 @@
+width=25%
+height=30%
+always_parse_args=true
+show_all=false
+term=kitty
+hide_scroll=true
+print_command=true
+
