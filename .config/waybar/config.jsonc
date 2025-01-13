@@ -34,7 +34,7 @@
         "on-click": "kitty --hold sh -c 'cal -m -y'"
     },
     "custom/weather": {
-      "exec": "${HOME}/.config/waybar/scripts/get_weather.sh Gdansk",
+      "exec": "/home/lukasz/.config/waybar/scripts/get_weather.sh Gdansk",
       "interval": 3600,
       "tooltip": true,
       "return-type": "json",
