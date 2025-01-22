@@ -366,7 +366,7 @@
   "theme.bar.buttons.workspaces.smartHighlight": true,
   "bar.workspaces.show_numbered": true,
   "menus.clock.time.military": true,
-  "bar.clock.format": "%d/%m     %H:%M",
+  "bar.clock.format": "%d/%m      %I:%M %p",
   "menus.clock.time.hideSeconds": false,
   "menus.transitionTime": 50,
   "theme.notification.scaling": 85,
