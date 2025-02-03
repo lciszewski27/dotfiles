@@ -2,7 +2,7 @@
 
 Config for my awesome hyprland setup on [CachyOS](https://cachyos.org/).
 
-<img src="desktop.png" alt="Screenshot of desktop" width="250"/>
+![Screenshot of desktop](desktop.png)
 ## Requirements
 
 Ensure you have the following installed on your system
