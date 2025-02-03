@@ -7,6 +7,13 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "assistant": {
+    "default_model": {
+      "provider": "ollama",
+      "model": "qwen2.5-coder:3b"
+    },
+    "version": "2"
+  },
   "ui_font_size": 13,
   "buffer_font_size": 13,
   "ui_font_family": "CaskaydiaCove Nerd Font",
@@ -35,7 +42,7 @@
     "inline_completion_provider": "none"
   },
   "hard_tabs": false,
-  "formatter": "language_server",
+  "formatter": "auto",
   "format_on_save": "on",
   "scrollbar": {
     "git_diff": false,
@@ -48,13 +55,16 @@
       "program": "nu"
     },
     "font_family": "CaskaydiaCove Nerd Font Mono",
-    "font_size": 14,
+    "font_size": 13,
     "blinking": "terminal_controlled",
     "working_directory": "current_project_directory",
     "cursor_shape": null,
     "alternate_scroll": "off",
     "button": true,
     "line_height": "comfortable"
+  },
+  "project_panel": {
+    "dock": "right"
   },
   "telemetry": {
     "diagnostics": false,

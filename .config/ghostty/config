@@ -8,6 +8,6 @@ command = /bin/nu -e "cd"
 
 font-size = 11
 font-family = CaskaydiaCove NF
-mouse-hide-while-typing = true
-gtk-titlebar = false
-gtk-adwaita = false
+#mouse-hide-while-typing = true
+#gtk-titlebar = false
+#gtk-adwaita = false
