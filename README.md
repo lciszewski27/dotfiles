@@ -1,7 +1,8 @@
-# Łukasz Ciszewski' dotfiles
+# Łukasz Ciszewski' dotfiles 📜
 
-This directory contains the dotfiles for my system
+Config for my awesome hyprland setup on [CachyOS](https://cachyos.org/).
 
+<img src="desktop.png" alt="Screenshot of desktop" width="250"/>
 ## Requirements
 
 Ensure you have the following installed on your system
