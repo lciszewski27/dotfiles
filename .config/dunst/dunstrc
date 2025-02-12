@@ -14,7 +14,7 @@
     horizontal_padding = 10
     frame_width = 0
     gap_size = 3
-    font = Caskaydia Cove 10
+    font = FiraCode Nerd Font 10
     
     icon_theme = "rose-pine-icons"
     enable_recursive_icon_lookup = true

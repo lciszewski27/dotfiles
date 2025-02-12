@@ -1,7 +1,7 @@
 {
   "bar.customModules.updates.pollingInterval": 1440000,
-  "theme.font.size": "0.75rem",
-  "theme.font.name": "CaskaydiaCove Nerd Font",
+  "theme.font.size": "11.5px",
+  "theme.font.name": "FiraCode Nerd Font",
   "theme.bar.menus.background": "#000000",
   "theme.bar.background": "#000000",
   "theme.bar.buttons.media.icon": "#FFFFFF",
@@ -365,10 +365,10 @@
   "theme.bar.buttons.monochrome": false,
   "theme.bar.buttons.workspaces.smartHighlight": true,
   "bar.workspaces.show_numbered": true,
-  "menus.clock.time.military": true,
+  "menus.clock.time.military": false,
   "bar.clock.format": "%d/%m    %I:%M %p",
   "menus.clock.time.hideSeconds": false,
-  "menus.transitionTime": 50,
+  "menus.transitionTime": 25,
   "theme.notification.scaling": 90,
   "theme.bar.menus.menu.dashboard.scaling": 90,
   "theme.bar.menus.menu.dashboard.confirmation_scaling": 90,
@@ -396,39 +396,8 @@
       ],
       "right": [
         "systray",
+        "updates",
         "network",
-        "volume",
-        "weather",
-        "clock",
-        "notifications"
-      ]
-    },
-    "1": {
-      "left": [
-        "dashboard",
-        "workspaces",
-        "windowtitle"
-      ],
-      "middle": [
-        "media"
-      ],
-      "right": [
-        "volume",
-        "weather",
-        "clock",
-        "notifications"
-      ]
-    },
-    "2": {
-      "left": [
-        "dashboard",
-        "workspaces",
-        "windowtitle"
-      ],
-      "middle": [
-        "media"
-      ],
-      "right": [
         "volume",
         "weather",
         "clock",
@@ -440,7 +409,7 @@
   "menus.clock.weather.key": "b846786cbf2d448e94202320251401",
   "menus.clock.weather.unit": "metric",
   "bar.customModules.weather.unit": "metric",
-  "scalingPriority": "gdk",
+  "scalingPriority": "hyprland",
   "menus.dashboard.directories.enabled": false,
   "theme.bar.buttons.borderSize": "0.1em",
   "theme.bar.outer_spacing": "0.75em",
@@ -448,10 +417,10 @@
   "theme.bar.buttons.workspaces.numbered_active_highlight_padding": "0.2em",
   "theme.bar.buttons.workspaces.pill.radius": "1.9rem * 0.6",
   "bar.workspaces.workspaces": 5,
-  "bar.customModules.weather.leftClick": "ghostty --command='/bin/nu -e \"curl v2n.wttr.in/gdansk\"'",
+  "bar.customModules.weather.leftClick": "ghostty --command='/bin/nu -e \"curl v2n.wttr.in/Gdansk\"'",
   "bar.workspaces.numbered_active_indicator": "underline",
-  "theme.font.label": "CaskaydiaCove Nerd Font Semi-Bold",
-  "theme.font.weight": 800,
+  "theme.font.label": "FiraCode Nerd Font",
+  "theme.font.weight": 600,
   "bar.clock.icon": "󰸗",
   "bar.media.truncation_size": 40,
   "bar.media.show_active_only": false,
@@ -461,5 +430,13 @@
   "menus.media.displayTimeTooltip": true,
   "menus.dashboard.shortcuts.left.shortcut1.tooltip": "Zen Browser",
   "menus.dashboard.shortcuts.left.shortcut1.command": "zen-browser",
-  "menus.dashboard.shortcuts.left.shortcut1.icon": ""
+  "menus.dashboard.shortcuts.left.shortcut1.icon": "",
+  "theme.bar.buttons.modules.cava.text": "#FFFFFF",
+  "theme.bar.buttons.modules.cava.background": "#090909",
+  "theme.bar.buttons.modules.cava.icon_background": "#090909",
+  "theme.bar.buttons.modules.cava.icon": "#FFFFFF",
+  "theme.bar.buttons.modules.cava.border": "#FFFFFF",
+  "menus.transition": "crossfade",
+  "bar.customModules.updates.leftClick": "ghostty --command='/bin/nu -e \"yay -Syu\"'",
+  "theme.bar.scaling": 95
 }
