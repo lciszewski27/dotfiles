@@ -1,6 +1,6 @@
 {
   "bar.customModules.updates.pollingInterval": 1440000,
-  "theme.font.size": "11.5px",
+  "theme.font.size": "12px",
   "theme.font.name": "FiraCode Nerd Font",
   "theme.bar.menus.background": "#000000",
   "theme.bar.background": "#000000",
@@ -364,7 +364,7 @@
   "theme.bar.opacity": 45,
   "theme.bar.buttons.monochrome": false,
   "theme.bar.buttons.workspaces.smartHighlight": true,
-  "bar.workspaces.show_numbered": true,
+  "bar.workspaces.show_numbered": false,
   "menus.clock.time.military": false,
   "bar.clock.format": "%d/%m    %I:%M %p",
   "menus.clock.time.hideSeconds": false,
@@ -396,10 +396,9 @@
       ],
       "right": [
         "systray",
-        "updates",
-        "network",
-        "volume",
         "weather",
+        "bluetooth",
+        "volume",
         "clock",
         "notifications"
       ]
@@ -438,5 +437,21 @@
   "theme.bar.buttons.modules.cava.border": "#FFFFFF",
   "menus.transition": "crossfade",
   "bar.customModules.updates.leftClick": "ghostty --command='/bin/nu -e \"yay -Syu\"'",
-  "theme.bar.scaling": 95
+  "theme.bar.scaling": 95,
+  "bar.network.showWifiInfo": false,
+  "menus.dashboard.powermenu.avatar.image": "/home/lukasz/Downloads/unnamed.png",
+  "bar.workspaces.workspaceMask": false,
+  "bar.workspaces.workspaceIconMap": {
+    "1": "I",
+    "2": "II",
+    "3": "III",
+    "4": "IV",
+    "5": "V",
+    "6": "VI",
+    "7": "VII",
+    "8": "VIII",
+    "9": "IX",
+    "10": "X"
+  },
+  "bar.workspaces.showWsIcons": true
 }
