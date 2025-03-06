@@ -1,44 +1,39 @@
 window {
   margin: 0px;
   padding: 0px;
-  /*background-color: #1b1c29;*/
-  opacity: 0.85;
+  background-color: rgba(25, 23, 36, 0.9);
   border-radius: 20px;
   border: 2px solid #ebbcba;
   color: #e0def4;
-  font-family: "FiraCode Nerd Font";
+  font-family: "JetBrainsMono Nerd Font";
   font-size: 14px;
   font-weight: bold;
 }
 
 #input {
-  margin: 5px 20px;
+  margin: 10px 20px 0px 20px;
   padding: 10px;
-  border-radius: 0.1em;
+  border-radius: 10px;
   border: none;
   color: #ebbcba;
-  background-color: #191724;
+
 }
 #inner-box {
-  margin: 5px;
-  padding: 10px;
+  margin: 5px 15px 5px 15px;
   border: none;
-  background-color: #191724;
 }
 
 #outer-box {
   margin: 5px;
-  padding: 10px;
+  padding: 15px;
   border: none;
   border-radius: 20px;
-  background-color: #191724;
 }
 
 #scroll {
   margin: 0px;
   padding: 10px;
   border: none;
-  background-color: #191724;
 }
 
 #text {
@@ -48,7 +43,6 @@ window {
 }
 
 #entry {
-  background-color: #191724;
   border-radius: 10px;
 }
 
@@ -68,5 +62,5 @@ window {
 }
 
 #entry:drop(active) {
-  background-color: #ebbcba !important;
+  #background-color: #ebbcba !important;
 }

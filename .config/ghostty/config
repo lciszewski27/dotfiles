@@ -10,6 +10,6 @@ cursor-style-blink = true
 #command = /bin/nu
 
 font-size = 11
-#font-family = CaskaydiaCove NF
-font-family = FiraCode Nerd Font
+font-family = JetBrainsMono Nerd Font
+#font-family = FiraCode Nerd Font
 mouse-hide-while-typing = true

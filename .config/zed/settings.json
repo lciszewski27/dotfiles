@@ -16,8 +16,8 @@
   },
   "ui_font_size": 13,
   "buffer_font_size": 13,
-  "ui_font_family": "FiraCode Nerd Font",
-  "buffer_font_family": "FiraCode Nerd Font",
+  "ui_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
   "theme": {
     "mode": "dark",
     "dark": "Rosé Pine",
@@ -54,7 +54,7 @@
     "shell": {
       "program": "nu"
     },
-    "font_family": "FiraCode Nerd Font",
+    "font_family": "JetBrainsMono Nerd Font",
     "font_size": 13,
     "blinking": "terminal_controlled",
     "working_directory": "current_project_directory",
