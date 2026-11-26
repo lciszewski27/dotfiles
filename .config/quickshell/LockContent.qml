@@ -8,13 +8,27 @@ import Quickshell
  * (one instance per screen). Kept as a separate Item so it can be previewed
  * in a plain window without engaging the session-lock protocol.
  *
- * Layout (replaces hyprlock): big clock up top, avatar +
+ * Entrance is a staggered fade-and-rise driven by `open`: background and
+ * ghost clock first, then clock, date, avatar, greeting and the password
+ * pill in sequence.
+ *
+ * Layout mirrors ~/.config/hypr/hyprlock.conf: big clock up top, avatar +
  * greeting in the middle, password pill below.
  */
 Item {
     id: root
 
+    property bool open: false
     property string userName: Quickshell.env("USER") || "user"
+
+    property real anim: 0
+    Behavior on anim { NumberAnimation { duration: 450; easing.type: Easing.OutCubic } }
+    onOpenChanged: anim = open ? 1 : 0
+
+    // Maps anim into a 0..1 window so elements can stagger.
+    function stage(from, to) {
+        return Math.min(1, Math.max(0, (anim - from) / (to - from)));
+    }
 
     SystemClock {
         id: clock
@@ -25,13 +39,14 @@ Item {
     Rectangle {
         anchors.fill: parent
         color: Theme.base08
+        opacity: stage(0.0, 0.35)
     }
 
     Text {
         anchors.centerIn: parent
         text: Qt.formatDateTime(clock.date, "HH:mm")
         color: Theme.base01
-        opacity: 0.55
+        opacity: 0.55 * stage(0.0, 0.4)
         font.family: Theme.fontUi
         font.pixelSize: Math.min(parent.width * 0.22, 420)
         font.weight: Font.Bold
@@ -45,6 +60,8 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             text: Qt.formatDateTime(clock.date, "HH:mm")
             color: Theme.base07
+            opacity: stage(0.1, 0.45)
+            transform: Translate { y: (1 - stage(0.1, 0.5)) * 26 }
             font.family: Theme.fontUi
             font.pixelSize: 110
             font.weight: Font.DemiBold
@@ -54,6 +71,8 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             text: Qt.formatDateTime(clock.date, "dddd, d MMMM")
             color: Theme.base06
+            opacity: stage(0.2, 0.55)
+            transform: Translate { y: (1 - stage(0.2, 0.6)) * 24 }
             font.family: Theme.fontUi
             font.pixelSize: 22
             font.weight: Font.DemiBold
@@ -74,6 +93,9 @@ Item {
             color: Theme.base02
             border.color: Theme.base07
             border.width: 2
+            opacity: stage(0.3, 0.65)
+            scale: 0.8 + 0.2 * stage(0.3, 0.7)
+            transformOrigin: Item.Center
 
             Text {
                 anchors.centerIn: parent
@@ -89,6 +111,8 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             text: "Hello, " + root.userName + " ✨"
             color: Theme.base06
+            opacity: stage(0.4, 0.75)
+            transform: Translate { y: (1 - stage(0.4, 0.75)) * 20 }
             font.family: Theme.fontUi
             font.pixelSize: 20
             font.weight: Font.DemiBold
@@ -103,6 +127,8 @@ Item {
             color: Theme.base01
             border.color: LockState.failMessage !== "" ? Theme.m3Error : Theme.base07
             border.width: 2
+            opacity: stage(0.5, 0.9)
+            transform: Translate { y: (1 - stage(0.5, 0.9)) * 22 }
 
             TextInput {
                 id: passwordInput
@@ -116,7 +142,7 @@ Item {
                 font.pixelSize: 15
                 echoMode: TextInput.Password
                 passwordCharacter: "●"
-                focus: true
+                focus: root.open
                 enabled: LockState.pam.responseRequired
                 onAccepted: {
                     LockState.submit(text);

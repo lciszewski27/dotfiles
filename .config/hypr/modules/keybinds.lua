@@ -7,6 +7,7 @@ hl.bind(mainMod .. " + space", hl.dsp.exec_cmd("vicinae toggle"))
 -- SUPER+L locks, SUPER+Q opens the quickshell power overlay.
 hl.bind(mainMod .. " + l", hl.dsp.exec_cmd("qs ipc call lock lock"))
 hl.bind(mainMod .. " + q", hl.dsp.exec_cmd("qs ipc call power toggle"))
+hl.bind(mainMod .. " + w", hl.dsp.exec_cmd("qs ipc call wallpaper toggle"))
 
 -- Screenshot
 hl.bind(mainMod .. " + s",

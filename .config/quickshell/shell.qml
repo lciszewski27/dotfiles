@@ -9,7 +9,7 @@ import Quickshell.Services.Polkit
  * Quickshell bar + session (replaces waybar + dunst + wlogout + hyprlock).
  *
  * Layout:  [updates] [mpris]        [workspaces]        [tray] [matura]
- *          [weather] [bluetooth] [volume] [network] [bell] [clock] [power]
+ *          [weather] [bluetooth] [volume] [network] [bell] [clock]
  *
  * Every colour comes from Theme.qml, which Matugen regenerates from the
  * current wallpaper. Launch with `QS_ICON_THEME=Papirus-Dark qs`
@@ -23,7 +23,11 @@ import Quickshell.Services.Polkit
 ShellRoot {
     id: root
 
-    Component.onCompleted: root.settings.watchFiles = true
+    Component.onCompleted: {
+        root.settings.watchFiles = true;
+        WallpaperState.refresh();
+        WallpaperState.restore();
+    }
 
     NotificationServer {
         id: notifServer
@@ -67,6 +71,19 @@ ShellRoot {
         }
         function close(): void {
             PowerState.open = false;
+        }
+    }
+
+    IpcHandler {
+        target: "wallpaper"
+        function toggle(): void {
+            WallpaperState.toggle();
+        }
+        function apply(path: string): void {
+            WallpaperState.apply(path);
+        }
+        function refresh(): void {
+            WallpaperState.refresh();
         }
     }
 
@@ -145,7 +162,6 @@ ShellRoot {
                     NetworkModule {}
                     BellModule {}
                     ClockModule {}
-                    PowerModule {}
                 }
             }
         }
@@ -159,6 +175,28 @@ ShellRoot {
             PolkitDialog {
                 modelData: modelData
                 agent: polkitAgent
+            }
+        }
+    }
+
+    Variants {
+        model: Quickshell.screens
+
+        delegate: Component {
+            // Desktop background, painted by Quickshell itself.
+            WallpaperLayer {
+                modelData: modelData
+            }
+        }
+    }
+
+    Variants {
+        model: Quickshell.screens
+
+        delegate: Component {
+            // Wallpaper picker (centered grid, one per screen).
+            WallpaperPicker {
+                modelData: modelData
             }
         }
     }
@@ -208,6 +246,10 @@ ShellRoot {
                     anchors.right: parent.right
                     width: 360
                     spacing: 8
+                    // Fade the whole stack in/out; per-toast entrances would
+                    // replay for every toast whenever the model refreshes.
+                    opacity: NotifyState.toasts.length > 0 ? 1 : 0
+                    Behavior on opacity { NumberAnimation { duration: 180 } }
 
                     Repeater {
                         model: NotifyState.toasts
@@ -266,7 +308,10 @@ ShellRoot {
 
                                     Text {
                                         anchors.verticalCenter: parent.verticalCenter
-                                        width: parent.width - 18 - 6 - 24 - 50
+                                        // Shrinks when the urgency tag is shown so the
+                                        // row never overflows; expands into the freed
+                                        // space when the tag hides (no dead gap).
+                                        width: parent.width - 18 - 24 - 12 - (tagLabel.visible ? 56 : 0)
                                         text: (n.appName || "notification") + " · " + Qt.formatDateTime(new Date(item.ts), "HH:mm")
                                         color: Theme.base05
                                         font.family: Theme.fontUi
@@ -276,6 +321,7 @@ ShellRoot {
                                     }
 
                                     Text {
+                                        id: tagLabel
                                         anchors.verticalCenter: parent.verticalCenter
                                         width: 50
                                         text: n.urgency === NotificationUrgency.Critical ? "urgent"

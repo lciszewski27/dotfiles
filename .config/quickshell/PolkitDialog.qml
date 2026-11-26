@@ -21,16 +21,16 @@ PanelWindow {
     screen: modelData
     anchors {
         top: true
+        bottom: true
         left: true
         right: true
     }
-    margins {
-        top: 160
-    }
-    implicitHeight: 240
     color: "transparent"
     exclusionMode: ExclusionMode.Ignore
-    focusable: false
+    // Must be focusable: without layer-shell keyboard focus the password
+    // field can never receive keys. The surface only maps while a request
+    // is active (see `visible`), so focus is held solely during auth.
+    focusable: true
     visible: win.anim > 0.01
 
     WlrLayershell.layer: WlrLayer.Top
@@ -42,7 +42,7 @@ PanelWindow {
     // (uses win.active from the header)
 
     Rectangle {
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.centerIn: parent
         width: 380
         implicitHeight: authCol.implicitHeight + 28
         radius: 14
@@ -51,7 +51,7 @@ PanelWindow {
         border.width: 1
         opacity: win.anim
         scale: 0.97 + win.anim * 0.03
-        transformOrigin: Item.Top
+        transformOrigin: Item.Center
 
         Column {
             id: authCol
@@ -145,12 +145,22 @@ PanelWindow {
                     echoMode: (win.flow && win.flow.responseVisible)
                         ? TextInput.Normal : TextInput.Password
                     passwordCharacter: "●"
+                    // Autofocus whenever a request is active; Esc cancels.
                     focus: win.active
                     enabled: win.flow && win.flow.isResponseRequired
                     onAccepted: {
                         if (win.flow) win.flow.submit(text);
                         text = "";
                     }
+                    Keys.onEscapePressed: {
+                        if (win.flow) win.flow.cancelAuthenticationRequest();
+                    }
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.IBeamCursor
+                    onClicked: passwordInput.forceActiveFocus()
                 }
 
                 Text {

@@ -11,7 +11,7 @@ Pill {
 
     property bool historyOpen: false
 
-    label: NotifyState.dnd ? "󰪑" : (NotifyState.unread > 0 ? "󰂛 " + NotifyState.unread : "󰂚")
+    label: NotifyState.dnd ? "󰪑" : (NotifyState.unread > 0 ? "󰂛  " + NotifyState.unread : "󰂚")
     stateClass: NotifyState.dnd ? "none" : (NotifyState.unread > 0 ? "active" : "")
 
     tooltip: {

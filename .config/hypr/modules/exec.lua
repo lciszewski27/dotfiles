@@ -3,8 +3,9 @@ hl.on("hyprland.start", function()
   -- a failing entry (e.g. missing swaync) must not kill the rest.
   hl.exec_cmd("vicinae server")
   hl.exec_cmd("QS_ICON_THEME=Papirus-Dark quickshell")
-  -- awww-daemon restores the last wallpaper from its own cache.
-  hl.exec_cmd("awww-daemon")
+  -- No wallpaper daemon: Quickshell paints the background itself
+  -- (WallpaperLayer, restored from ~/.config/quickshell/wallpaper.conf).
+  -- hl.exec_cmd("awww-daemon")
   -- Quickshell runs the polkit agent itself (themed prompt in-shell), so the
   -- GNOME agent must stay off: only one agent may register on the bus.
   -- hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")

@@ -3,8 +3,6 @@
  * (see the [templates.quickshell] entry in ~/.config/matugen/config.toml).
  *
  * Do not edit by hand: run `matugen image <wallpaper>` to regenerate.
- * The values below are the currently generated waybar palette, so the panel
- * keeps working until the next Matugen run.
  */
 pragma Singleton
 
@@ -12,7 +10,7 @@ import QtQuick
 import Quickshell
 
 Singleton {
-    // ── Base16 (same slots the waybar panel uses) ──────────────────────────
+    // ── Base16 (quickshell palette) ──────────────────────────
     readonly property color base00: "#060225"
     readonly property color base01: "#23133e"
     readonly property color base02: "#3a2059"
@@ -31,22 +29,23 @@ Singleton {
     readonly property color base0F: "#0a0227"
 
     // ── Material 3 roles (for accents and state colours) ───────────────────
-    readonly property color primary: "#6b538c"
-    readonly property color m3OnPrimary: "#ffffff"
-    readonly property color primaryContainer: "#eddcff"
-    readonly property color secondary: "#645a70"
-    readonly property color tertiary: "#7f525b"
-    readonly property color m3Error: "#ba1a1a"
-    readonly property color m3OnSurface: "#1d1a20"
-    readonly property color m3OnSurfaceVariant: "#4a454e"
-    readonly property color surface: "#fef7ff"
-    readonly property color surfaceContainer: "#f3ecf4"
-    readonly property color surfaceContainerHigh: "#ede6ee"
-    readonly property color outline: "#7b757f"
-    readonly property color outlineVariant: "#ccc4cf"
+    readonly property color primary: "#dab9ff"
+    readonly property color m3OnPrimary: "#470084"
+    readonly property color primaryContainer: "#6500b8"
+    readonly property color secondary: "#dbbde2"
+    readonly property color tertiary: "#ecb6e3"
+    readonly property color m3Error: "#ffb4ab"
+    readonly property color m3OnSurface: "#e9dfee"
+    readonly property color m3OnSurfaceVariant: "#cdc3d1"
+    readonly property color surface: "#201928"
+    readonly property color surfaceContainer: "#2d2734"
+    readonly property color surfaceContainerHigh: "#37313d"
+    readonly property color outline: "#968e9b"
+    readonly property color outlineVariant: "#4b4450"
 
     // ── Typography / geometry ──────────────────────────────────────────────
-    readonly property bool isDark: true
+readonly property bool isDark: true
+
     readonly property string fontUi: "Quicksand"
     readonly property string fontMono: "GeistMono Nerd Font"
     readonly property int panelHeight: 24

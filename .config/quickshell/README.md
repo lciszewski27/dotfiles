@@ -26,9 +26,10 @@ Hyprland-side (already applied):
 - `keybinds.lua`: volume media keys call `pactl` directly (bar OSD reacts
   itself); `playerctl` media keys use the bar media OSD; SUPER+L runs
   `qs ipc call lock lock` (quickshell lock), SUPER+Q runs
-  `qs ipc call power toggle` (quickshell power menu).
-- No `dunst` / `waybar` / `wlogout` / `hyprlock` autostart — quickshell owns
-  notifications, bar, power menu and lock.
+  `qs ipc call power toggle` (quickshell power menu), SUPER+W runs
+  `qs ipc call wallpaper toggle` (wallpaper picker).
+- No `dunst` / `waybar` / `wlogout` / `hyprlock` / `awww-daemon` autostart —
+  quickshell owns notifications, bar, power menu, lock and background.
 - polkit-gnome's autostart in `exec.lua` is commented out — the bar is the
   polkit agent now. If auth prompts ever stop appearing, make sure no other
   agent (polkit-gnome, hyprpolkitagent) is running: two agents can't register.
@@ -60,8 +61,11 @@ Hyprland-side (already applied):
 | `BellModule.qml` | Notification bell (unread badge) + history dialog with DND + clear-all |
 | `LockState.qml` | Singleton: lock flag + PAM authentication (config `login`); unlocks only on PAM success |
 | `LockScreen.qml` | Per-screen `WlSessionLockSurface` hosting the lock UI |
-| `LockContent.qml` | Lock UI: clock, date, avatar, password pill, error line (previewable standalone) |
+| `LockContent.qml` | Lock UI: staggered fade-and-rise entrance, clock, avatar, password pill (previewable standalone) |
 | `PolkitDialog.qml` | Centered polkit prompt: action, message, error, password, cancel/submit |
+| `WallpaperState.qml` | Singleton: wallpaper list, apply (save + matugen + reload), restore on start |
+| `WallpaperLayer.qml` | Desktop background on the Background layer (crossfade + grow, no daemon) |
+| `WallpaperPicker.qml` | Centered thumbnail grid over ~/Pictures/Wallpapers (`qs ipc call wallpaper …`) |
 | `PowerModule.qml` | Session/power ⏻ pill (opens overlay, right-click locks) |
 | `PowerState.qml` | Singleton: overlay open flag + session actions (quickshell-owned, ex-wlogout) |
 | `Wlogout.qml` | Fullscreen session overlay: dim + frosted blur, 5 PNG-icon buttons, S/R/E/H/L |
@@ -148,10 +152,11 @@ in `WeatherModule.qml`.
   for 1.5s. Media OSD exists too (track + play/pause on MPRIS changes) but
   is off by default (`mediaOsd` in `OsdState.qml`) — the MPRIS pill already
   shows the track, and a popup on every video start is noise
-- Power: left click opens the fullscreen session overlay (five buttons,
-  PNG icons in `~/.config/quickshell/icons/`, hover style, S/R/E/H/L keybinds
-  and loginctl commands), Esc or click-outside cancels, right click
-  locks straight away. Layer namespace is `quickshell-wlogout` with a
+- Power: no pill in the bar (SUPER+Q runs wlogout directly). The Quickshell
+  twin still exists — `qs ipc call power toggle` opens the fullscreen
+  overlay (same five buttons, PNG icons from `~/.config/wlogout/icons/`,
+  hover style, S/R/E/H/L keybinds and loginctl commands), Esc or
+  click-outside cancels. Layer namespace is `quickshell-wlogout` with a
   blur rule
 - Lockscreen: the bar is also the screen locker (`WlSessionLock` + PAM,
   Matugen-themed — clock, avatar, password pill, replaces hyprlock). SUPER+L runs
@@ -160,7 +165,16 @@ in `WeatherModule.qml`.
   `pkill -x quickshell` — the compositor releases the lock when its client dies
 - Polkit: the bar is the authentication agent (themed prompt, replaces
   polkit-gnome, which must stay off — see below). Only one agent may register,
-  so if prompts never appear, check no other agent is running
+  so if prompts never appear, check no other agent is running. The overlay is
+  keyboard-focusable with autofocus on the password field (Esc cancels,
+  Enter submits) — required for layer-shell key delivery
+- Wallpaper: the background is painted by Quickshell itself (Background layer,
+  crossfade + slight grow on change — no daemon). SUPER+W opens a thumbnail
+  grid over `~/Pictures/Wallpapers` — mouse or arrows/Enter, Esc closes;
+  picking one saves it to `wallpaper.conf` (restored at shell start), runs
+  matugen exactly like `theme-chnage.sh` does for the current color scheme,
+  and reloads Hyprland config-only for the new accent. IPC:
+  `qs ipc call wallpaper toggle|apply|refresh`
 - Clock: the pill shows the time; hovering swaps it for the full date
   (`2026年11月26日 00:50`) inside the pill. Left click opens an interactive month calendar (arrows to change
   month, `Today`, click a day to select) using the system locale; right or

@@ -20,7 +20,6 @@ Pill {
         ? Qt.formatDateTime(clock.date, "yyyy年MM月dd日 HH:mm")
         : Qt.formatDateTime(clock.date, "HH:mm")
     tooltip: ""
-    textBold: true
     emphasized: root.calendarOpen
 
     CalendarDialog {

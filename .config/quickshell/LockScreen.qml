@@ -15,5 +15,6 @@ WlSessionLockSurface {
 
     LockContent {
         anchors.fill: parent
+        open: LockState.locked
     }
 }

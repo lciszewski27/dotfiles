@@ -19,9 +19,9 @@ Pill {
     tooltip: root.target
         ? Ui.countdownTooltip(root.span, root.target, root.targetLabel)
         : "Countdown: invalid target"
-    stateClass: root.span.negative ? "overdue"
-        : (root.span.weeks === 0 && root.span.days === 0 && root.span.hours === 0 &&
-           root.span.minutes < 60 ? "soon" : "active")
+    // Same default pill styling as the other modules; only an overdue
+    // target keeps the red error state.
+    stateClass: root.span.negative ? "overdue" : ""
 
     function recompute() {
         var now = new Date();
