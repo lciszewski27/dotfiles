@@ -1,0 +1,19 @@
+[user]
+	email = lciszewski27+dev@gmail.com
+	name = Łukasz Ciszewski
+	signingkey = FBAE0A81F3333538
+[init]
+	defaultBranch = main
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/lukasz/.local/share/mise/installs/gh/2.102.0/gh_2.102.0_linux_amd64/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/lukasz/.local/share/mise/installs/gh/2.102.0/gh_2.102.0_linux_amd64/bin/gh auth git-credential
+[commit]
+	gpgsign = true
+[alias]
+	cam = commit -a -m
+	unstage = restore --staged
+[core]
+	autocrlf = input

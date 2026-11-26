@@ -7,67 +7,118 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "assistant": {
-    "default_model": {
-      "provider": "ollama",
-      "model": "deepseek-r1:8b"
-    },
-    "version": "2"
-  },
-  "ui_font_size": 13,
-  "buffer_font_size": 13,
-  "ui_font_family": "JetBrainsMono Nerd Font",
-  "buffer_font_family": "JetBrainsMono Nerd Font",
-  "theme": {
-    "mode": "dark",
-    "dark": "Rosé Pine",
-    "light": "Rosé Pine"
-  },
-  "tabs": {
-    "file_icons": true,
-    "git_status": true
-  },
-  "indent_guides": {
-    "enabled": true,
-    "coloring": "indent_aware"
-  },
-  "git": {
-    "git_gutter": "hide",
-    "inline_blame": {
-      "enabled": false
-    }
-  },
-  "features": {
-    "copilot": false,
-    "edit_prediction_provider": "none"
-  },
-  "hard_tabs": false,
-  "formatter": "auto",
-  "format_on_save": "on",
-  "scrollbar": {
-    "git_diff": false,
-    "search_results": false,
-    "selected_symbol": false,
-    "diagnostics": "none"
-  },
+  "buffer_font_family": "Maple Mono NF",
   "terminal": {
-    "shell": {
-      "program": "nu"
-    },
-    "font_family": "JetBrainsMono Nerd Font",
-    "font_size": 13,
-    "blinking": "terminal_controlled",
-    "working_directory": "current_project_directory",
-    "cursor_shape": null,
-    "alternate_scroll": "off",
-    "button": true,
-    "line_height": "comfortable"
+    "font_family": "Maple Mono NF",
   },
-  "project_panel": {
-    "dock": "right"
+  "agent": {
+    "sidebar_side": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "cli_default_open_behavior": "new_window",
+  "inline_code_actions": false,
+  "toolbar": {
+    "quick_actions": false,
+  },
+  "multi_cursor_modifier": "cmd_or_ctrl",
+  "tabs": {
+    "git_status": true,
+    "file_icons": true,
+  },
+  "tab_bar": {
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false,
+    "show": true,
+  },
+  "collaboration_panel": {
+    "button": false,
+  },
+  "disable_ai": false,
+  "icon_theme": {
+    "mode": "light",
+    "light": "Warm Charmed Icons",
+    "dark": "Warm Charmed Icons",
+  },
+  "base_keymap": "VSCode",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "ui_font_family": "Maple Mono",
+  "theme": {
+    "mode": "light",
+    "light": "Catppuccin Espresso (Blur) [Heavy]",
+    "dark": "Tokyo Night Dark",
   },
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
-  }
+    "metrics": false,
+  },
+  "title_bar": {
+    "show_user_menu": false,
+    "show_branch_status_icon": false,
+    "show_onboarding_banner": false,
+    "show_user_picture": false,
+    "show_sign_in": false,
+  },
+  "gutter": {
+    "bookmarks": false,
+    "breakpoints": false,
+    "runnables": false,
+    "folds": false,
+    "min_line_number_digits": 0,
+  },
+  "tab_size": 2,
+  "colorize_brackets": true,
+  "project_panel": {
+    "hide_root": true,
+    "indent_guides": {
+      "show": "never",
+    },
+  },
+
+  "format_on_save": "on",
+
+  // Ustawia Prettiera jako domyślny formater (Zed użyje Twojego lokalnego prettier-plugin-astro)
+  "formatter": "prettier",
+
+  // Wymusza na ESLincie próbę naprawy błędów podczas zapisu
+  "code_actions_on_format": {
+    "source.fixAll.eslint": true,
+  },
+
+  // Konfiguracja specyficzna dla języków
+  "languages": {
+    "Astro": {
+      "formatter": "prettier",
+    },
+    "JavaScript": {
+      "formatter": "prettier",
+    },
+    "TypeScript": {
+      "formatter": "prettier",
+    },
+  },
+  "context_servers": {
+    "Sanity": {
+      "enabled": true,
+      "headers": {
+        "Authorization": "Bearer skcsFUcM7RbjIeGPFmW6IbB8B1Sg7zUg2F7fna3F7w4awVKbRLbChwuWVpjJxemtcGLoDBMZEB7W78vfo",
+      },
+      "url": "https://mcp.sanity.io",
+    },
+  },
+
+  "experimental.theme_overrides": {
+    "syntax": {
+      "comment": {
+        "font_style": "italic",
+      },
+      "keyword": {
+        "font_style": "italic",
+      },
+      "type": {
+        "font_style": "italic",
+      },
+    },
+  },
 }

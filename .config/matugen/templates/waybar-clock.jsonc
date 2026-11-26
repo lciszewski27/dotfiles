@@ -1,0 +1,24 @@
+{
+  "clock": {
+<* if {{ is_dark_mode }} *>
+    "format": "🌙  {:%H:%M}",
+<* else *>
+    "format": "☀️  {:%H:%M}",
+<* endif *>
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%H:%M %d %B %Y}",
+    "on-click-right": "hyprctl dispatch exec 'gnome-control-center datetime'",
+    "calendar": {
+      "mode": "year",
+      "weeks-pos": "right",
+      "mode-mon-col": 3,
+      "format": {
+        "months": "<span color='{{colors.on_surface_variant.default.hex}}'><b>{}</b></span>",
+        "days": "<span color='{{colors.on_surface_variant.default.hex}}'><b>{}</b></span>",
+        "weeks": "<span color='{{colors.primary.default.hex}}'><b>W{}</b></span>",
+        "weekdays": "<span color='{{colors.tertiary.default.hex}}'><b>{}</b></span>",
+        "today": "<span color='{{colors.secondary.default.hex}}'><b><u>{}</u></b></span>",
+      },
+    },
+  },
+}

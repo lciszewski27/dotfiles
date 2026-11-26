@@ -1,0 +1,22 @@
+-- Cursor
+hl.env("XCURSOR_THEME", "Marci-Crystal")
+hl.env("XCURSOR_SIZE", "24")
+hl.env("HYPRCURSOR_THEME", "Marci-Crystal")
+hl.env("HYPRCURSOR_SIZE", "24")
+
+-- Nvidia (RTX 3070, explicit-sync supported: do NOT disable it)
+hl.env("LIBVA_DRIVER_NAME", "nvidia")
+hl.env("XDG_SESSION_TYPE", "wayland")
+hl.env("GBM_BACKEND", "nvidia-drm")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+hl.env("NVD_BACKEND", "direct")
+
+-- Wayland toolkits (native Wayland, no XWayland fallback windows)
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
+hl.env("MOZ_ENABLE_WAYLAND", "1")
+hl.env("QT_QPA_PLATFORM", "wayland")
+hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
+hl.env("SDL_VIDEODRIVER", "wayland")
+hl.env("GDK_BACKEND", "wayland,x11,*")
+hl.env("CLUTTER_BACKEND", "wayland")
+hl.env("GDK_WAYLAND_DISABLE", "ext_background_effect_manager_v1")

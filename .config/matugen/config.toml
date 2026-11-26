@@ -1,0 +1,63 @@
+[config]
+
+[templates.hyprland]
+input_path = '~/.config/matugen/templates/hyprland-colors.conf'
+output_path = '~/.config/hypr/modules/colors.lua'
+
+[templates.gtk3]
+input_path = '~/.config/matugen/templates/gtk-colors.css'
+output_path = '~/.config/gtk-3.0/colors.css'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-{{mode}}'
+
+[templates.gtk4]
+input_path = '~/.config/matugen/templates/gtk-colors.css'
+output_path = '~/.config/gtk-4.0/colors.css'
+
+[templates.hyprlock]
+input_path = '~/.config/matugen/templates/hyprlock.conf'
+output_path = '~/.config/hypr/matugen-hyprlock.conf'
+
+[templates.ghostty]
+input_path = '~/.config/matugen/templates/ghostty'
+output_path = '~/.config/ghostty/themes/Matugen'
+post_hook = 'pkill -SIGUSR2 ghostty || true'
+
+[templates.waybar]
+input_path = '~/.config/matugen/templates/waybar.css'
+output_path = '~/.config/waybar/matugen-base16.css'
+
+# The clock module is generated so the sun/moon glyph can sit INSIDE the
+# clock's own pill (Waybar cannot evaluate a condition inside a module's
+# format, and a separate custom/ module renders outside the pill).
+[templates.waybar_clock]
+input_path = '~/.config/matugen/templates/waybar-clock.jsonc'
+output_path = '~/.config/waybar/clock.jsonc'
+
+[templates.quickshell]
+input_path = '~/.config/matugen/templates/quickshell.qml'
+output_path = '~/.config/quickshell/Theme.qml'
+
+[templates.dunst]
+input_path = '~/.config/matugen/templates/dunstrc'
+output_path = '~/.config/dunst/dunstrc'
+post_hook = 'dunstctl reload || true'
+
+[templates.vicinae]
+input_path = '~/.config/matugen/templates/vicinae.toml'
+output_path = '~/.local/share/vicinae/themes/matugen.toml'
+# `vicinae server` already (re)starts the server; setsid+background so the
+# hook returns immediately instead of hanging matugen and orphaning the server.
+post_hook = "setsid vicinae server >/dev/null 2>&1 < /dev/null &"
+
+[templates.discord]
+input_path = '~/.config/matugen/templates/discord.css'
+output_path = '~/.config/vesktop/themes/system24-matugen.theme.css'
+
+[templates.nvchad]
+input_path = '~/.config/matugen/templates/nvchad.lua'
+output_path = '~/.config/nvim/lua/themes/matugen.lua'
+
+[templates.openrgb]
+input_path = '~/.config/matugen/templates/openrgb'
+output_path = '~/.config/OpenRGB/openrgb'
+

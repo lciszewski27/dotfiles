@@ -1,0 +1,39 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Waybar palette.
+
+   The Base16 slots come from Matugen's own base16 generation, which is
+   derived from the wallpaper's source colour (#7722cc — the same seed the
+   Material 3 palette uses). That keeps the panel in the same purple family
+   as the compositor, the terminal and the notifications.
+
+   Only the three surface slots are lifted one tone, so the panel pills and
+   menus sit above the wallpaper with visible elevation instead of reading
+   as flat black.
+
+   Design reference: design.md §3.4
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Surfaces (lifted) ────────────────────────────────────────────────── */
+@define-color base00 {{base16.base00.default.hex | lighten:4}};
+@define-color base01 {{base16.base01.default.hex | lighten:4}};
+@define-color base02 {{base16.base02.default.hex | lighten:4}};
+
+/* ── Lines & text ─────────────────────────────────────────────────────── */
+@define-color base03 {{base16.base03.default.hex}};
+@define-color base04 {{base16.base04.default.hex}};
+@define-color base05 {{base16.base05.default.hex}};
+@define-color base06 {{base16.base06.default.hex}};
+
+/* base07 is the panel's accent: active workspace, glow, slider highlight,
+   menu hover text. */
+@define-color base07 {{base16.base07.default.hex}};
+
+/* ── Accent slots ─────────────────────────────────────────────────────── */
+@define-color base08 {{base16.base08.default.hex}};
+@define-color base09 {{base16.base09.default.hex}};
+@define-color base0A {{base16.base0a.default.hex}};
+@define-color base0B {{base16.base0b.default.hex}};
+@define-color base0C {{base16.base0c.default.hex}};
+@define-color base0D {{base16.base0d.default.hex}};
+@define-color base0E {{base16.base0e.default.hex}};
+@define-color base0F {{base16.base0f.default.hex}};

@@ -1,0 +1,32 @@
+[meta]
+version = 1
+name = "Matugen"
+description = "Matugen for Vicinae"
+variant = "dark"
+inherits = "vicinae-dark"
+
+# The Vicinae palette uses Matugen's own base16 generation, the same source
+# the Waybar palette uses, so the launcher sits in the same purple family
+# as the rest of the desktop.
+# Design reference: design.md §3.4
+
+[colors.core]
+background = "{{base16.base00.default.hex | lighten:4}}"           # Base
+foreground = "{{base16.base05.default.hex}}"           # Text
+secondary_background = "{{base16.base01.default.hex | lighten:4}}" # Mantle
+border = "{{base16.base02.default.hex | lighten:4}}"               # Surface0
+accent = "{{base16.base0d.default.hex}}"               # Primary Accent
+
+[colors.accents]
+blue = "{{base16.base0d.default.hex}}"
+green = "{{base16.base0b.default.hex}}"
+magenta = "{{base16.base0e.default.hex}}"
+orange = "{{base16.base09.default.hex}}"
+purple = "{{base16.base0e.default.hex}}"
+red = "{{base16.base08.default.hex}}"
+yellow = "{{base16.base0a.default.hex}}"
+cyan = "{{base16.base0c.default.hex}}"
+
+[colors.list.item.selection]
+background = "{{base16.base02.default.hex | lighten:4}}"
+secondary_background = "{{base16.base03.default.hex}}"

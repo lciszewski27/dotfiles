@@ -1,0 +1,28 @@
+# stow itself + docs (already ignored by stow, also ignore for git where needed)
+# Keep README + desktop.png + hyprland.list tracked, so don't ignore them here.
+
+# nested nvim upstream repo - we track plain files only
+.config/nvim/.git/
+.config/nvim/.gitignore
+
+# large binaries / fonts - stowed locally but not committed
+.config/hypr/Fonts/
+.config/waybar/scripts/waybar-modules
+*.ttf
+*.otf
+
+# backups
+*.bak
+*.bak-*
+**/*.bak
+**/*.bak-*
+
+# secrets - never commit
+.config/secrets.env
+secrets.env
+**/secrets.env
+
+# caches / OS noise
+__pycache__/
+*.pyc
+.DS_Store
