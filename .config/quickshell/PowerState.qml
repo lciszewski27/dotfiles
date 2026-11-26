@@ -6,9 +6,8 @@ import Quickshell
 /*
  * PowerState.qml
  *
- * Single source of truth for the wlogout-style session overlay. Actions and
- * keybinds mirror ~/.config/wlogout/layout exactly (including the
- * loginctl-based lock/logout/sleep commands).
+ * Single source of truth for the quickshell session overlay (replaces wlogout).
+ * Actions use loginctl/systemctl directly (lock/logout/sleep/reboot/shutdown).
  */
 Singleton {
     id: root

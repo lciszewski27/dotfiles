@@ -10,7 +10,7 @@ import QtQuick
 import Quickshell
 
 Singleton {
-    // ── Base16 (same slots the waybar panel uses) ──────────────────────────
+    // ── Base16 (quickshell palette) ──────────────────────────
     readonly property color base00: "{{base16.base00.default.hex | lighten:4}}"
     readonly property color base01: "{{base16.base01.default.hex | lighten:4}}"
     readonly property color base02: "{{base16.base02.default.hex | lighten:4}}"

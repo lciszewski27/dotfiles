@@ -8,7 +8,7 @@ import Quickshell
  * (one instance per screen). Kept as a separate Item so it can be previewed
  * in a plain window without engaging the session-lock protocol.
  *
- * Layout mirrors ~/.config/hypr/hyprlock.conf: big clock up top, avatar +
+ * Layout (replaces hyprlock): big clock up top, avatar +
  * greeting in the middle, password pill below.
  */
 Item {

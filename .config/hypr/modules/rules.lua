@@ -44,7 +44,7 @@ hl.window_rule({
 -- so it cannot be blanked, and the wallpaper is excluded because a 92%
 -- scale of a fullscreen image reads as a glitch, not a pop.
 hl.layer_rule({
-  match = { namespace = "waybar" },
+  match = { namespace = "quickshell-bar" },
   blur = true,
   ignore_alpha = 0.3,
   no_anim = true,
@@ -61,10 +61,6 @@ hl.layer_rule({
   -- 0.3 leaves the surface effectively opaque, i.e. no visible blur.
   ignore_alpha = true,
   xray = true,
-})
-hl.layer_rule({
-  match = { namespace = "logout_dialog" },
-  blur = true,
 })
 hl.layer_rule({
   match = { namespace = "quickshell-wlogout" },

@@ -55,7 +55,7 @@ hl.animation({ leaf = "fadeIn",     enabled = true, speed = 2, bezier = "cute-sn
 hl.animation({ leaf = "fadeOut",    enabled = true, speed = 2, bezier = "cute-snap" })
 hl.animation({ leaf = "fadeSwitch", enabled = true, speed = 3, bezier = "cute-snap" })
 
--- Layer surfaces (Vicinae launcher, Dunst toasts, wlogout). Hyprland
+-- Layer surfaces (Vicinae launcher, Quickshell toasts/bar/power menu). Hyprland
 -- applies ONE animation to all layer surfaces — layer rules support
 -- no_anim but not a per-namespace curve — so both pop.
 hl.animation({ leaf = "layers",    enabled = true, speed = 2, spring = "cute-bounce" })

@@ -13,34 +13,14 @@ post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings s
 input_path = '~/.config/matugen/templates/gtk-colors.css'
 output_path = '~/.config/gtk-4.0/colors.css'
 
-[templates.hyprlock]
-input_path = '~/.config/matugen/templates/hyprlock.conf'
-output_path = '~/.config/hypr/matugen-hyprlock.conf'
-
 [templates.ghostty]
 input_path = '~/.config/matugen/templates/ghostty'
 output_path = '~/.config/ghostty/themes/Matugen'
 post_hook = 'pkill -SIGUSR2 ghostty || true'
 
-[templates.waybar]
-input_path = '~/.config/matugen/templates/waybar.css'
-output_path = '~/.config/waybar/matugen-base16.css'
-
-# The clock module is generated so the sun/moon glyph can sit INSIDE the
-# clock's own pill (Waybar cannot evaluate a condition inside a module's
-# format, and a separate custom/ module renders outside the pill).
-[templates.waybar_clock]
-input_path = '~/.config/matugen/templates/waybar-clock.jsonc'
-output_path = '~/.config/waybar/clock.jsonc'
-
 [templates.quickshell]
 input_path = '~/.config/matugen/templates/quickshell.qml'
 output_path = '~/.config/quickshell/Theme.qml'
-
-[templates.dunst]
-input_path = '~/.config/matugen/templates/dunstrc'
-output_path = '~/.config/dunst/dunstrc'
-post_hook = 'dunstctl reload || true'
 
 [templates.vicinae]
 input_path = '~/.config/matugen/templates/vicinae.toml'

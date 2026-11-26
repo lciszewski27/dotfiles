@@ -5,21 +5,22 @@ import Quickshell.Wayland
 /*
  * Wlogout.qml
  *
- * Mirrors ~/.config/wlogout/ (matugen-wlogout.css + layout) as run by
- * SUPER+Q: five borderless icon+label buttons in one centered row, icons at
+ * Quickshell session overlay (replaces wlogout + hyprlock-era power menu):
+ * five borderless icon+label buttons in one centered row, icons at
  * 20% growing toward 50% with a bouncy ease on hover, hover fills the button
  * with primary and hides the label, S/R/E/H/L keybinds, Esc/dim-click to
  * cancel. Overlay layer + Ignore exclusion so it never reserves space.
  *
  * One instance per screen (see shell.qml); all bind to PowerState.open.
+ * Trigger with `qs ipc call power toggle` (SUPER+Q).
  */
 PanelWindow {
     id: win
 
     required property var modelData
 
-    // Same icon set wlogout uses.
-    readonly property string iconDir: "file:///home/lukasz/.config/wlogout/icons/"
+    // Quickshell-owned session icons (migrated from removed ~/.config/wlogout/icons/).
+    readonly property string iconDir: "file:///home/lukasz/.config/quickshell/icons/"
     // Idle icon ~20% of the button width, like background-size: 20%.
     readonly property real iconIdle: 76
     readonly property real iconHover: 160
@@ -58,7 +59,7 @@ PanelWindow {
         }
     }
 
-    // Keyboard: Esc cancels, S/R/E/H/L trigger (as in wlogout/layout).
+    // Keyboard: Esc cancels, S/R/E/H/L trigger (quickshell-owned session actions).
     Item {
         anchors.fill: parent
         focus: PowerState.open
@@ -133,7 +134,7 @@ PanelWindow {
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
                         text: entry.label
-                        // wlogout hides the label on hover (color: transparent).
+                        // Hide the label on hover (color: transparent).
                         color: btnMouse.containsMouse ? "transparent" : "#e8e0e8"
                         font.family: Theme.fontUi
                         font.pixelSize: 15

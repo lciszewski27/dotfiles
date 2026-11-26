@@ -7,7 +7,6 @@
 
 # large binaries / fonts - stowed locally but not committed
 .config/hypr/Fonts/
-.config/waybar/scripts/waybar-modules
 *.ttf
 *.otf
 

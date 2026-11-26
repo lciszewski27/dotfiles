@@ -3,10 +3,10 @@ local mainMod = "SUPER"
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd("ghostty"))
 hl.bind(mainMod .. " + space", hl.dsp.exec_cmd("vicinae toggle"))
--- Quickshell owns the session lock (WlSessionLock + PAM): SUPER+L asks it
--- to lock over IPC. hyprlock stays installed as a fallback.
+-- Quickshell owns session lock (WlSessionLock + PAM) and power menu:
+-- SUPER+L locks, SUPER+Q opens the quickshell power overlay.
 hl.bind(mainMod .. " + l", hl.dsp.exec_cmd("qs ipc call lock lock"))
-hl.bind(mainMod .. " + q", hl.dsp.exec_cmd("~/.config/hypr/scripts/wlogout.sh"))
+hl.bind(mainMod .. " + q", hl.dsp.exec_cmd("qs ipc call power toggle"))
 
 -- Screenshot
 hl.bind(mainMod .. " + s",
@@ -64,15 +64,14 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness.
 -- Volume keys drive Pipewire directly; the Quickshell bar shows its own OSD
--- on every volume/mute change, so the dunst osd.sh popups are not needed.
+-- on every volume/mute change.
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("sh -c 'pactl set-sink-mute @DEFAULT_SINK@ 0; pactl set-sink-volume @DEFAULT_SINK@ +1%'"), { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -1%"),      { locked = true, repeating = true })
 hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"),     { locked = true, repeating = true })
 hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
--- Desktop monitor has no backlight: route through OSD script (brightnessctl
--- when available) instead of calling a missing `light` binary with sudo.
-hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("/home/lukasz/.config/dunst/osd.sh brightness_up"),                  { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("/home/lukasz/.config/dunst/osd.sh brightness_down"),                  { locked = true, repeating = true })
+-- Brightness directly via brightnessctl (quickshell has no brightness OSD yet).
+hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl set 5%+"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl set 5%-"), { locked = true, repeating = true })
 
 -- Bare Print key also takes a screenshot (in addition to SUPER+S combos)
 hl.bind("Print", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot.sh full"))

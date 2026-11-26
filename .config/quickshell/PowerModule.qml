@@ -2,9 +2,8 @@ import QtQuick
 import Quickshell
 
 /*
- * Session/power pill. Left click opens the wlogout-style fullscreen overlay
- * (same buttons, keys and commands as ~/.config/wlogout/layout), right click
- * locks straight away.
+ * Session/power pill. Left click opens the quickshell fullscreen session
+ * overlay, right click locks straight away.
  */
 Pill {
     id: root

@@ -6,7 +6,7 @@ import Quickshell.Services.Notifications
 import Quickshell.Services.Polkit
 
 /*
- * Quickshell port of the waybar top panel.
+ * Quickshell bar + session (replaces waybar + dunst + wlogout + hyprlock).
  *
  * Layout:  [updates] [mpris]        [workspaces]        [tray] [matura]
  *          [weather] [bluetooth] [volume] [network] [bell] [clock] [power]
@@ -15,9 +15,10 @@ import Quickshell.Services.Polkit
  * current wallpaper. Launch with `QS_ICON_THEME=Papirus-Dark qs`
  * (or `qs -c default`).
  *
- * This process also owns org.freedesktop.Notifications (so dunst must stay
- * off), runs the session lock (SUPER+L calls `qs ipc call lock lock`) and
- * the polkit agent (replacing polkit-gnome).
+ * This process owns org.freedesktop.Notifications (dunst removed),
+ * runs the session lock (SUPER+L calls `qs ipc call lock lock`),
+ * the power menu (SUPER+Q calls `qs ipc call power toggle`),
+ * and the polkit agent (replacing polkit-gnome).
  */
 ShellRoot {
     id: root
@@ -53,6 +54,19 @@ ShellRoot {
         }
         function status(): bool {
             return LockState.locked;
+        }
+    }
+
+    IpcHandler {
+        target: "power"
+        function toggle(): void {
+            PowerState.toggle();
+        }
+        function open(): void {
+            PowerState.open = true;
+        }
+        function close(): void {
+            PowerState.open = false;
         }
     }
 
@@ -153,7 +167,7 @@ ShellRoot {
         model: Quickshell.screens
 
         delegate: Component {
-            // wlogout-style session overlay (fullscreen, one per screen).
+            // Quickshell session overlay (fullscreen, one per screen).
             Wlogout {
                 modelData: modelData
             }

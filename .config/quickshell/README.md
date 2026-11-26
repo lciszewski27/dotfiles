@@ -1,8 +1,9 @@
-# Quickshell bar
+# Quickshell bar + session
 
-A Quickshell port of the Waybar setup in `~/.config/waybar`. It keeps the same
-module order, glyphs, interactions and **Matugen-generated colours**: every
-colour lives in `Theme.qml`, which Matugen regenerates on each wallpaper change.
+Quickshell bar + notifications + power menu + lockscreen (replaces removed
+`~/.config/waybar`, `~/.config/dunst`, `~/.config/wlogout`, `hyprlock`).
+Module order, glyphs and interactions kept, with **Matugen-generated colours**:
+every colour lives in `Theme.qml`, regenerated on each wallpaper change.
 
 ## Run it
 
@@ -15,35 +16,24 @@ qs                      # uses ~/.config/quickshell/shell.qml
 qs -c default
 ```
 
-To replace Waybar in this Hyprland setup, change the autostart entries in
-`~/.config/hypr/modules/exec.lua`:
+Autostart in `~/.config/hypr/modules/exec.lua`:
 
 ```lua
--- hl.exec_cmd("waybar")
 hl.exec_cmd("QS_ICON_THEME=Papirus-Dark quickshell")
--- hl.exec_cmd("dunst")   -- keep off: quickshell owns org.freedesktop.Notifications
 ```
 
-then `pkill waybar` and `hyprctl dispatch exec quickshell` for the current
-session. Hyprland-side changes already applied for the new modules:
-
-- `keybinds.lua`: the three volume media keys now call `pactl` directly
-  (the bar's OSD reacts to the Pipewire change itself, so the dunst
-  `osd.sh` popups would only duplicate it); the four `playerctl` media keys
-  no longer notify via `osd.sh` (the bar's media OSD fires instead); SUPER+L
-  now runs `qs ipc call lock lock` for the Quickshell lockscreen (hyprlock
-  stays installed as fallback). Backups in `/tmp/opencode/`.
-- dunst's D-Bus auto-activation is masked
-  (`~/.local/share/dbus-1/services/org.knopwob.dunst.service` → `/dev/null`)
-  so it can't steal the notification bus from under the bar.
+Hyprland-side (already applied):
+- `keybinds.lua`: volume media keys call `pactl` directly (bar OSD reacts
+  itself); `playerctl` media keys use the bar media OSD; SUPER+L runs
+  `qs ipc call lock lock` (quickshell lock), SUPER+Q runs
+  `qs ipc call power toggle` (quickshell power menu).
+- No `dunst` / `waybar` / `wlogout` / `hyprlock` autostart — quickshell owns
+  notifications, bar, power menu and lock.
 - polkit-gnome's autostart in `exec.lua` is commented out — the bar is the
   polkit agent now. If auth prompts ever stop appearing, make sure no other
   agent (polkit-gnome, hyprpolkitagent) is running: two agents can't register.
-- Your icon themes were symlinked from legacy `~/.icons/` into
-  `~/.local/share/icons/` so XDG-conformant lookups (including Quickshell's)
-  find them. Optional: add a blur rule for the new layer-shell namespace
-`"quickshell-bar"` next to the existing `namespace = "waybar"` rule in
-`~/.config/hypr/modules/rules.lua`.
+- Blur rule uses `namespace = "quickshell-bar"` (plus `quickshell-wlogout`,
+  `quickshell-notify`, `quickshell-osd`) in `~/.config/hypr/modules/rules.lua`.
 
 ## Files
 
@@ -73,8 +63,8 @@ session. Hyprland-side changes already applied for the new modules:
 | `LockContent.qml` | Lock UI: clock, date, avatar, password pill, error line (previewable standalone) |
 | `PolkitDialog.qml` | Centered polkit prompt: action, message, error, password, cancel/submit |
 | `PowerModule.qml` | Session/power ⏻ pill (opens overlay, right-click locks) |
-| `PowerState.qml` | Singleton: overlay open flag + session actions (mirrors wlogout/layout) |
-| `Wlogout.qml` | Fullscreen wlogout-style overlay: dim + frosted blur, 5 PNG-icon buttons, S/R/E/H/L |
+| `PowerState.qml` | Singleton: overlay open flag + session actions (quickshell-owned, ex-wlogout) |
+| `Wlogout.qml` | Fullscreen session overlay: dim + frosted blur, 5 PNG-icon buttons, S/R/E/H/L |
 | `DialogWindow.qml` | Shared Matugen card shell for the Bluetooth/Network popovers |
 | `ToggleSwitch.qml` | Shared on/off toggle used by the dialogs |
 | `ClockModule.qml` | `clock` (time normally, full date on hover) + calendar popup |
@@ -147,8 +137,8 @@ in `WeatherModule.qml`.
   prompt for secured networks), middle click opens `nmtui`, right click opens
   Wi-Fi settings. The tooltip ends with a live `↓ / ↑` line sampled every
   second from `/proc/net/dev`
-- Notifications: the bar owns `org.freedesktop.Notifications` (dunst must stay
-  off — its autostart and D-Bus activation are disabled, see below). Toasts
+- Notifications: the bar owns `org.freedesktop.Notifications` (dunst removed).
+  Toasts
   slide in top-right with urgency colours, an expiry progress bar and action
   buttons; critical ones stick until dismissed. The bell pill shows the
   unread count — left click opens the history (DND toggle, clear-all, click
@@ -158,21 +148,21 @@ in `WeatherModule.qml`.
   for 1.5s. Media OSD exists too (track + play/pause on MPRIS changes) but
   is off by default (`mediaOsd` in `OsdState.qml`) — the MPRIS pill already
   shows the track, and a popup on every video start is noise
-- Power: left click opens a fullscreen wlogout-style overlay (same five
-  buttons, PNG icons, hover style, S/R/E/H/L keybinds and loginctl commands
-  as `~/.config/wlogout/layout`), Esc or click-outside cancels, right click
-  locks straight away. Layer namespace is `quickshell-wlogout` if you want a
-  blur rule for it
+- Power: left click opens the fullscreen session overlay (five buttons,
+  PNG icons in `~/.config/quickshell/icons/`, hover style, S/R/E/H/L keybinds
+  and loginctl commands), Esc or click-outside cancels, right click
+  locks straight away. Layer namespace is `quickshell-wlogout` with a
+  blur rule
 - Lockscreen: the bar is also the screen locker (`WlSessionLock` + PAM,
-  Matugen-themed like hyprlock — clock, avatar, password pill). SUPER+L runs
+  Matugen-themed — clock, avatar, password pill, replaces hyprlock). SUPER+L runs
   `qs ipc call lock lock`. Unlock needs your user password; PAM failures show
   in the pill and re-arm automatically. Escape hatch: Ctrl+Alt+F3, log in,
   `pkill -x quickshell` — the compositor releases the lock when its client dies
 - Polkit: the bar is the authentication agent (themed prompt, replaces
   polkit-gnome, which must stay off — see below). Only one agent may register,
   so if prompts never appear, check no other agent is running
-- Clock: the pill shows the time; hovering swaps it for the waybar
-  `format-alt` date (`2026年11月26日 00:50`) inside the pill. Left click opens an interactive month calendar (arrows to change
+- Clock: the pill shows the time; hovering swaps it for the full date
+  (`2026年11月26日 00:50`) inside the pill. Left click opens an interactive month calendar (arrows to change
   month, `Today`, click a day to select) using the system locale; right or
   middle click opens date/time settings
 - Updates: click opens a terminal running `yay -Syu` and `flatpak update`

@@ -37,7 +37,9 @@ $ stow .
 Managed (important only, local-first):
 - shell+git: `.zshrc` `.bashrc` `.bash_profile` `.p10k.zsh` `.zprofile` `.gitconfig`
 - terminal+editor: `.config/ghostty` `.config/nvim` `.config/fastfetch` `.config/btop` `.config/yazi` `.config/zed` `.config/matugen`
-- hyprland: `.config/hypr` `.config/waybar` `.config/wlogout` `.config/dunst` `.config/nwg-look` `.config/quickshell`
+- hyprland+quickshell (waybar/dunst/wlogout/hyprlock removed): `.config/hypr` `.config/quickshell` `.config/nwg-look`
+
+Removed: `.config/waybar` `.config/wlogout` `.config/dunst` `hyprlock.conf` (replaced by quickshell bar/notifications/power menu/lock).
 
 Ignored by stow (`.stow-local-ignore`): `.git` `README.md` `desktop.png` `hyprland.list`
 Ignored by git (`.gitignore`, stowed locally but not committed): `Fonts/*.ttf/*.otf`, `waybar-modules` binary, `*.bak*`, `secrets.env`, nested `nvim/.git`.
