@@ -63,9 +63,8 @@ hl.layer_rule({
   xray = true,
 })
 hl.layer_rule({
-  match = { namespace = "quickshell-wlogout" },
+  match = { namespace = "^quickshell-wlogout$" },
   blur = true,
-  -- Frosted blur through the overlay dim (same recipe as notifications).
-  ignore_alpha = true,
-  xray = true,
+  ignore_alpha = 0.05,
+  xray = false,
 })
