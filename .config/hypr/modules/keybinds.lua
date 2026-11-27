@@ -1,7 +1,7 @@
 local mainMod = "SUPER"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-hl.bind(mainMod .. " + return", hl.dsp.exec_cmd("ghostty"))
+hl.bind(mainMod .. " + return", hl.dsp.exec_cmd("kitty"))
 hl.bind(mainMod .. " + space", hl.dsp.exec_cmd("vicinae toggle"))
 -- Quickshell owns session lock (WlSessionLock + PAM) and power menu:
 -- SUPER+L locks, SUPER+Q opens the quickshell power overlay.
